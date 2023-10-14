@@ -86,17 +86,16 @@ WSGI_APPLICATION = 'MalucyLesson.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+mysql -hcontainers-us-west-31.railway.app -uroot -pq1DJC6E0sdS1rgPL9lUP --port 6724 --protocol=TCP railway
 DATABASES = {
-      'default': 
-          dj_database_url.config( default='postgresql://postgres:postgres@localhost:5432/mysite',
-        conn_max_age=600)
-         
-        #'ENGINE': 'django.db.backends.mysql',
-        #'NAME': 'malucy',
-        #'USER': 'root',
-       # 'PASSWORD':'Vicpav%7ma',
-        #'HOST': 'localhost', # dirección del servidor MySQL
-        #'PORT': '3306',     # puerto de MySQL
+      'default': { 
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'malucy',
+        'USER': 'uroot',
+        'PASSWORD':'pq1DJC6E0sdS1rgPL9lUP',
+    'HOST': 'hcontainers-us-west-31.railway.app', # dirección del servidor MySQL
+        'PORT': '6724',     # puerto de MySQL
+      }
     
 }
 
@@ -136,14 +135,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-if not DEBUG:
-    # Tell Django to copy statics to the `staticfiles` directory
-    # in your application directory on Render.
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-    # Turn on WhiteNoise storage backend that takes care of compressing static files
-    # and creating unique names for each version so they can safely be cached forever.
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'frontend/static/img'),
 ]

@@ -1,0 +1,54 @@
+
+.navbar-brand {
+    font-size: 1rem; /* Este valor puede ser ajustado según tus preferencias */
+}
+.navbar-nav .nav-link {
+    position: relative;
+    transition: border-bottom 0.3s ease; /* Agrega una transición para suavizar el efecto */
+}
+
+.navbar-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color:#0d6efd;
+    transition: width 0.3s ease; /* Agrega una transición para la animación de crecimiento */
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 100%; /* Hace crecer la línea al 100% del ancho del elemento padre */
+}
+@media (max-width: 767px) {
+   
+    .navbar-nav .nav-link:hover::after {
+        width: 20%; /* Hace crecer la línea al 100% del ancho del elemento padre */
+    }
+  }
+  
+.contacto {
+    width: 100%;
+    height: 100vh;
+    background-color: white; /* Color danger (rojo) */
+}
+.form-label{
+    color: #FF477E;
+    font-weight:700 ;
+}
+
+#mensaje,#email,#nombre{
+    border-color: #0d6efd;
+
+}
+
+.container {
+    transition: transform 0.3s;
+}
+
+.container:hover {
+    transform: scale(1.02);
+}
+
+
