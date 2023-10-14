@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Curso</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+</head>
+
+<body class="bg-dark">
+    <div class="container mt-5 ">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card bg-light">
+                    <div class="card-header text-center">
+                        <h4 class="mb-0 text-primary">Agregar Curso</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="/frmregister/" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <div class="mb-3">
+                                <label for="nombreCurso" class="form-label">Nombre del Curso</label>
+                                <input type="text" class="form-control" id="txtnombre" name="txtnombre" required>
+                            </div>
+    
+                            <div class="mb-3">
+                                <label for="descripcionCurso" class="form-label">Descripción del Curso</label>
+                                <textarea class="form-control" id="txtdescripcion" name="txtdescripcion" rows="4" required></textarea>
+                            </div>
+    
+                            <div class="mb-3">
+                                <label for="duracionCurso" class="form-label">Duración del Curso en Meses</label>
+                                <input type="number" min="0" class="form-control" id="txtduracion" name="txtduracion" required>
+                            </div>
+    
+                            <div class="mb-3">
+                                <label for="precioIndividual" class="form-label">Precio Individual</label>
+                                <input type="number" min="0" class="form-control" id="txtPIndividual" name="txtPIndividual" required>
+                            </div>
+    
+                            <div class="mb-3">
+                                <label for="precioGrupal" class="form-label">Precio Grupal +10</label>
+                                <input type="number" min="0" class="form-control" id="txtPGrupal" name="txtPGrupal" required>
+                            </div>
+    
+                            <div class="mb-3">
+                                <label for="imagenCurso" class="form-label">Imagen del Curso</label>
+                                <input type="file" class="form-control" id="txtImagenCurso" name="txtImagenCurso" accept="image/*" required>
+                            </div>
+    
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Guardar Curso</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7  d-none d-md-table">
+                <div class="card bg-light">
+                    <div class="card-header text-center">
+                        <h4 class="mb-0 text-danger">Listado de Cursos</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>Nombre</th>
+                                   
+                                    <th>Duración</th>
+                                    <th>Precio Grupal</th>
+                                    <th>Precio Individual</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for curso in cursos %}
+                                <tr>
+                                    <td>{{ curso.idcurso }}</td>
+                                    <td>{{ curso.nombre }}</td>
+                                    <td>{{ curso.duracion }}</td>
+                                    <td>${{ curso.precio_grupal }}</td>
+                                    <td>${{ curso.precio_individual }}</td>
+                                    <td class="d-flex">
+                                        <a href="eliminarc/{{curso.idcurso}}" class="btn btn-danger btn-sm me-2">Eliminar</a>
+                                        <a href="modificar_curso/{{curso.idcurso}}" class="btn btn-primary btn-sm">Modificar</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+   
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
